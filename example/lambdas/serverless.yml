@@ -1,0 +1,24 @@
+service: ${env:STACK_NAME}-Lambdas
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  region: ${env:AWS_DEFAULT_REGION}
+  stage: Dev
+  iamRoleStatements:
+    - Effect: "Allow"
+      Resource: arn:aws:kinesis:${env:AWS_DEFAULT_REGION}:${env:AWS_ACCOUNT_ID}:stream/${env:STACK_NAME}-Kinesis
+      Action:
+        - "kinesis:GetRecords"
+        - "kinesis:GetShardIterator"
+        - "kinesis:DescribeStream"
+        - "kinesis:ListStreams"
+        - "kinesis:*"
+
+functions:
+  pushDataToKinesis:
+    handler: handler.pushDataToKinesis
+  logger:
+    handler: handler.logger
+    events:
+      - stream: arn:aws:kinesis:${env:AWS_DEFAULT_REGION}:${env:AWS_ACCOUNT_ID}:stream/${env:STACK_NAME}-Kinesis
