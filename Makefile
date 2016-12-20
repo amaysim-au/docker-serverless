@@ -10,6 +10,8 @@ docker-shell:
 .PHONY: docker-shell
 
 git-tag:
+	-git tag -d $(SERVERLESS_VERSION)
+	-git push origin :refs/tags/$(SERVERLESS_VERSION)
 	git tag $(SERVERLESS_VERSION)
 	git push origin $(SERVERLESS_VERSION)
 .PHONY: git-tag
