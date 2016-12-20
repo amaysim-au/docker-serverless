@@ -1,7 +1,7 @@
 Example
 =======
 
-This example shows how to deploy to AWS using `aws-serverless` container.
+This example shows how to deploy to AWS using `aws-serverless` image.
 
 It has 2 components:
 
@@ -13,9 +13,8 @@ Usage
 
 ```bash
 # copy env.list.template to env.list and fill out env.list
-$ cp ../env.list.template ../env.list
+$ cp env.list.template env.list
 $ vim env.list
-#
 
 # deploy Kinesis and lambdas
 $ make deploy
