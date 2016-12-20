@@ -1,7 +1,7 @@
 Docker AWS Serverless
 ======================
 
-Docker image containing AWS CLI, NodeJS, and Serverless Framework to ease deployment to AWS.
+Docker image containing AWS CLI, AWS shell, NodeJS, Serverless Framework, and some scripts to ease AWS deployments.
 
 Usage
 ------
@@ -11,7 +11,9 @@ Usage
 If you want to build and use your own local image
 
 ```bash
+# build image locally
 $ make docker-build
+# go inside the container
 $ make docker-shell
 ```
 
