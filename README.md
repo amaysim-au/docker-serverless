@@ -58,7 +58,9 @@ The Docker image has the following:
 - [aws-cli](https://github.com/aws/aws-cli)
 - [aws-shell](https://github.com/awslabs/aws-shell)
 - [Serverless Framework v1.4](https://serverless.com)
-- envsubst which is quite useful to create file based on a template using env vars
+- [yarn](https://github.com/yarnpkg/yarn)
+- zip: handy to zip your own serverless artefact
+- envsubst: quite useful to create file based on a template using env vars
 
 ### Scripts
 
