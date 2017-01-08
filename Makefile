@@ -1,5 +1,5 @@
 IMAGE_NAME ?= aws-serverless
-SERVERLESS_VERSION = v1.4.0
+SERVERLESS_VERSION = v1.5.0
 
 docker-build:
 	docker build -t $(IMAGE_NAME) .
