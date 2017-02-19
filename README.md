@@ -39,6 +39,22 @@ Those environment variables must all be set
 - passing them to `docker run -e NAME1=value1 -e NAME2=value2`
 - a mix of both
 
+## Update Docker image
+
+### New version of Serverless Framework
+
+1. Change `SERVERLESS` of `Dockerfile`
+2. Change `SERVERLESS_VERSION` of `Makefile`
+3. Build/test it locally
+4. Commit the changes
+5. Go to [hub.docker.com](hub.docker.com)
+6. In `Build Settings` tab, add a new `Tag` with the new version like `v1.7.0`
+7. Change the `Name` of the `latest` entry to the new version.
+
+### Fix for the current version
+
+
+
 ### Ways of using the image
 
 Here are some ways of using the image

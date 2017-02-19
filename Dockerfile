@@ -10,7 +10,7 @@ RUN wget https://yarnpkg.com/latest.tar.gz && \
     rm latest.tar.gz
 ENV PATH "$PATH:/opt/yarn/dist/bin"
 RUN yarn --version
-ENV SERVERLESS serverless@1.5.0
+ENV SERVERLESS serverless@1.7.0
 RUN yarn global add $SERVERLESS
 COPY scripts /opt/scripts
 ENV PATH "$PATH:/opt/scripts"
