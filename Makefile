@@ -1,15 +1,15 @@
 IMAGE_NAME ?= aws-serverless
 SERVERLESS_VERSION = v1.7.0
 
-docker-build:
+dockerBuild:
 	docker build -t $(IMAGE_NAME) .
 .PHONY: docker-build
 
-docker-shell:
+dockerShell:
 	docker run --rm -it -v $(PWD):/opt/app $(IMAGE_NAME) bash
 .PHONY: docker-shell
 
-git-tag:
+gitTag:
 	-git tag -d $(SERVERLESS_VERSION)
 	-git push origin :refs/tags/$(SERVERLESS_VERSION)
 	git tag $(SERVERLESS_VERSION)

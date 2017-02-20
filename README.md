@@ -12,9 +12,9 @@ If you want to build and use your own local image
 
 ```bash
 # build image locally
-$ make docker-build
+$ make dockerBuild
 # go inside the container
-$ make docker-shell
+$ make dockerShell
 ```
 
 ### Environment Variables
@@ -45,15 +45,22 @@ Those environment variables must all be set
 
 1. Change `SERVERLESS` of `Dockerfile`
 2. Change `SERVERLESS_VERSION` of `Makefile`
-3. Build/test it locally
-4. Commit the changes
+3. Build and test locally
+4. Commit and push the changes
 5. Go to [hub.docker.com](hub.docker.com)
 6. In `Build Settings` tab, add a new `Tag` with the new version like `v1.7.0`
 7. Change the `Name` of the `latest` entry to the new version.
+8. Tag the commit with the command `make gitTag`
+9. In `Build Details` tab, you should now see builds `latest` and `1.7.0` kicking off
 
 ### Fix for the current version
 
-
+1. Do the fixes you want to do
+2. Build and test locally
+3. Commit and push the changes
+4. Run `make gitTag`
+5. Go to [hub.docker.com](hub.docker.com)
+6. In `Build Details` tab, you should now see builds `latest` and `1.7.0` kicking off
 
 ### Ways of using the image
 
