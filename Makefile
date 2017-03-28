@@ -1,5 +1,6 @@
-IMAGE_NAME ?= aws-serverless
-SERVERLESS_VERSION = v1.9.0
+SERVERLESS_VERSION = 1.9.0
+IMAGE_NAME ?= aws-serverless:$(SERVERLESS_VERSION)
+TAG = v$(SERVERLESS_VERSION)
 
 dockerBuild:
 	docker build -t $(IMAGE_NAME) .
@@ -10,8 +11,8 @@ dockerShell:
 .PHONY: dockerShell
 
 gitTag:
-	-git tag -d $(SERVERLESS_VERSION)
-	-git push origin :refs/tags/$(SERVERLESS_VERSION)
-	git tag $(SERVERLESS_VERSION)
-	git push origin $(SERVERLESS_VERSION)
+	-git tag -d $(TAG)
+	-git push origin :refs/tags/$(TAG)
+	git tag $(TAG)
+	git push origin $(TAG)
 .PHONY: gitTag
