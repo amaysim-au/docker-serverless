@@ -74,10 +74,7 @@ Docker image
 
 The Docker image has the following:
 
-- Node 4.7 (Alpine)
-
-  > AWS Lambda only supports Node 4.3.2 but there was no official Docker image with this version. According to [http://node.green](http://node.green) both versions implement the same es6 features.
-
+- Node 6.10 (Alpine)
 - [aws-cli](https://github.com/aws/aws-cli)
 - [aws-shell](https://github.com/awslabs/aws-shell)
 - [Serverless Framework v1.4](https://serverless.com)
