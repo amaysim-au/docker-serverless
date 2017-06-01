@@ -1,36 +1,43 @@
 PACKAGE_DIR=package/package
 ARTIFACT_NAME=package.zip
 ARTIFACT_PATH=package/$(ARTIFACT_NAME)
+ifdef DOTENV
+	DOTENV_TARGET=dotenv
+else
+	DOTENV_TARGET=.env
+endif
 
 ################
 # Entry Points #
 ################
 
-build:
+build: $(DOTENV_TARGET)
 	docker-compose run --rm serverless make _deps _testUnit _build
 
-deploy: $(ARTIFACT_PATH)
+deploy: $(ARTIFACT_PATH) $(DOTENV_TARGET)
 	docker-compose run --rm serverless make _deploy
 
-remove:
+remove: $(DOTENV_TARGET)
 	docker-compose run --rm serverless make _remove
 
-shell:
+shell: $(DOTENV_TARGET)
 	docker-compose run --rm serverless bash
 
 ##########
-# OTHERS #
+# Others #
 ##########
 
-.env: | $(DOTENV)
-	@echo "Must provide 'DOTENV=.yourenvfile' or create file '.env' manually"
+# Create .env based on .env.template if .env does not exist
+.env:
+	@echo "Create .env with .env.template"
+	cp .env.template .env
 
-$(DOTENV):
-	@echo "Overwritting .env file with $(DOTENV)"
+# Create/Overwrite .env with $(DOTENV)
+dotenv:
+	@echo "Overwrite .env with $(DOTENV)"
 	cp $(DOTENV) .env
-.PHONY: $(DOTENV)
 
-# _deps install nodejs modules and babel-cli.
+# _deps installs nodejs modules and babel-cli.
 # This is time consuming and if you are developing using a container, best to not exit the container.
 _deps:
 	# work around due to https://github.com/yarnpkg/yarn/issues/1961
@@ -41,7 +48,7 @@ _deps:
 _testUnit:
 	./node_modules/mocha/bin/mocha --compilers js:babel-register test/unit
 
-# _build transcompiles the src folder using Babel, installs nodejs production modules and creates a package ready for Serverless Framework.
+# _build transcompiles the src folder using Babel, installs nodejs production modules, and creates a package ready for Serverless Framework.
 _build:
 	rm -fr package
 	mkdir -p $(PACKAGE_DIR)/
