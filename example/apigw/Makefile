@@ -12,6 +12,9 @@ build:
 deploy: $(ARTIFACT_PATH)
 	docker-compose run --rm serverless make _deploy
 
+remove:
+	docker-compose run --rm serverless make _remove
+
 shell:
 	docker-compose run --rm serverless bash
 
