@@ -6,24 +6,24 @@ ARTIFACT_PATH=package/$(ARTIFACT_NAME)
 # Entry Points #
 ################
 
-build: .env
+build:
 	docker-compose run --rm serverless make _deps _testUnit _build
 
-deploy: $(ARTIFACT_PATH) .env
+deploy: $(ARTIFACT_PATH)
 	docker-compose run --rm serverless make _deploy
 
 shell:
 	docker-compose run --rm serverless bash
 
-##############
-# NOT DOCKER #
-##############
+##########
+# OTHERS #
+##########
 
 .env: | $(DOTENV)
-	echo "Must provide 'DOTENV=.yourenvfile' or create file '.env' manually"
+	@echo "Must provide 'DOTENV=.yourenvfile' or create file '.env' manually"
 
 $(DOTENV):
-	echo "Overwritting .env file with $(DOTENV)"
+	@echo "Overwritting .env file with $(DOTENV)"
 	cp $(DOTENV) .env
 .PHONY: $(DOTENV)
 
