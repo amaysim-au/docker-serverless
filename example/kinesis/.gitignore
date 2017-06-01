@@ -1,1 +1,4 @@
 cfn.params.json
+handler.js
+node_modules
+.serverless
