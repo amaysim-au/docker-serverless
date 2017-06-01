@@ -12,3 +12,7 @@ functions:
     handler: src/handler.greet
     environment:
       GREETING_MESSAGE: ${env:GREETING_MESSAGE}
+    events:
+      - http:
+          path: greet
+          method: get

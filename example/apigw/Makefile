@@ -60,9 +60,6 @@ _deploy:
 	rm -fr .serverless
 	sls deploy -v
 
-_logs:
-	sls logs --function greet
-
 _remove:
 	sls remove -v
 	rm -fr .serverless
