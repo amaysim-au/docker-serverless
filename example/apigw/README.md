@@ -13,7 +13,7 @@ Greeting API using AWS Gateway and Lambda.
 
 ```bash
 # create .env file based on .env.local
-$ make .env DOTENV=.env.local
+$ make dotenv DOTENV=.env.local
 # test/build lambda package
 $ make build
 # deploy to aws
