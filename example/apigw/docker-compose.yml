@@ -1,9 +1,8 @@
 version: '2.1'
 services:
   serverless:
-    image: amaysim/aws-serverless:1.13.0
+    image: amaysim/aws-serverless:1.14.0
     env_file: .env
     volumes:
       - ~/.aws:/root/.aws
       - .:/opt/app
-    working_dir: /opt/app

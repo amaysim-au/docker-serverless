@@ -14,4 +14,4 @@ ENV SERVERLESS serverless@1.14.0
 RUN yarn global add $SERVERLESS
 COPY scripts /opt/scripts
 ENV PATH "$PATH:/opt/scripts"
-WORKDIR /opt
+WORKDIR /opt/app

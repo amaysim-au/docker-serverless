@@ -47,10 +47,9 @@ Those environment variables must all be set
 2. Change `SERVERLESS_VERSION` of `Makefile`
 3. Build and test locally
 4. Commit and push the changes
-5. Go to [hub.docker.com](hub.docker.com)
-6. In `Build Settings` tab, modify the `Tag` with the new version like `v1.13.0`
-7. Tag the commit with the command `make gitTag`
-8. In `Build Details` tab, you should now see build `1.13.0` kicking off
+5. Tag the commit with the command `make gitTag`
+6. Go to [hub.docker.com](hub.docker.com)
+7. In `Build Details` tab, you should now see the new tag kicking off
 
 ### Fix for the current version
 
@@ -59,7 +58,7 @@ Those environment variables must all be set
 3. Commit and push the changes
 4. Run `make gitTag`
 5. Go to [hub.docker.com](hub.docker.com)
-6. In `Build Details` tab, you should now see build `1.13.0` kicking off
+6. In `Build Details` tab, you should now see build the tag kicking off
 
 ### Ways of using the image
 
