@@ -9,6 +9,22 @@ Greeting API using AWS Gateway and Lambda.
 - AWS credentials in ~/.aws or environment variables
   > Environment variables can be defined inside your shell session using `export VAR=value` or setting them in .env file. See `.env.template` for more information.
 
+## Installation
+
+### With Serverless
+
+    $ serverless install -u https://github.com/amaysim-au/docker-aws-serverless/tree/master/example/apigw -n your-project
+
+### With Docker
+
+    $ docker run --rm -v ${PWD}:/opt/app -w /opt/app amaysim/aws-serverless:1.14.0 serverless install -u https://github.com/amaysim-au/docker-aws-serverless/tree/master/example/apigw -n your-project
+
+### With git
+
+    $ git clone https://github.com/amaysim-au/docker-aws-serverless.git
+    $ cp -r docker-aws-serverless/example/apigw/ your-project
+    $ rm -fr docker-aws-serverless/example/apigw/
+
 ## Usage
 
 ```bash
