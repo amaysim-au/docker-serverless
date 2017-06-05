@@ -1,4 +1,4 @@
-# Docker Serverless
+# amaysim/serverless
 
 Docker image containing NodeJS, Serverless Framework and Yarn.
 
