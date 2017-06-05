@@ -13,17 +13,17 @@ Greeting API using AWS Gateway and Lambda.
 
 ### With Serverless
 
-    $ serverless install -u https://github.com/amaysim-au/docker-aws-serverless/tree/master/example/apigw -n your-project
+    $ serverless install -u https://github.com/amaysim-au/docker-serverless/tree/master/example/apigw -n your-project
 
 ### With Docker
 
-    $ docker run --rm -v ${PWD}:/opt/app amaysim/aws-serverless:1.14.0 serverless install -u https://github.com/amaysim-au/docker-aws-serverless/tree/master/example/apigw -n your-project
+    $ docker run --rm -v ${PWD}:/opt/app amaysim/serverless:1.14.0 serverless install -u https://github.com/amaysim-au/docker-serverless/tree/master/example/apigw -n your-project
 
 ### With git
 
-    $ git clone https://github.com/amaysim-au/docker-aws-serverless.git
-    $ cp -r docker-aws-serverless/example/apigw/ your-project
-    $ rm -fr docker-aws-serverless/example/apigw/
+    $ git clone https://github.com/amaysim-au/docker-serverless.git
+    $ cp -r docker-serverless/example/apigw/ your-project
+    $ rm -fr docker-serverless/example/apigw/
 
 ## Usage
 
