@@ -8,7 +8,7 @@ build:
 shell:
 	docker run --rm -it -v $(PWD):/opt/app $(IMAGE_NAME) bash
 
-gitTag:
+tag:
 	-git tag -d $(TAG)
 	-git push origin :refs/tags/$(TAG)
 	git tag $(TAG)
