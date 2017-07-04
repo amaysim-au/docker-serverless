@@ -50,3 +50,4 @@ The Docker image has the following:
 - [Serverless Framework v1.4](https://serverless.com)
 - [yarn](https://github.com/yarnpkg/yarn)
 - zip: handy to zip your own serverless artefact
+- [AWS CLI](https://github.com/aws/aws-cli): required by some Serverless plug-ins to work
