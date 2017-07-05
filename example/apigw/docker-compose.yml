@@ -5,4 +5,5 @@ services:
     env_file: .env
     volumes:
       - ~/.aws:/root/.aws
+      - ~/.ssh:/root/.ssh
       - .:/opt/app
