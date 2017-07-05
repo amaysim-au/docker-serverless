@@ -1,6 +1,6 @@
 FROM node:6.10-alpine
 RUN apk --no-cache update && \
-    apk --no-cache add python py-pip ca-certificates groff less bash make jq curl wget g++ zip && \
+    apk --no-cache add python py-pip ca-certificates groff less bash make jq curl wget g++ zip git openssh && \
     pip --no-cache-dir install awscli && \
     update-ca-certificates && \
     rm -rf /var/cache/apk/*
