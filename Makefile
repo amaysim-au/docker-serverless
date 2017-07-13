@@ -1,6 +1,6 @@
 SERVERLESS_VERSION = 1.17.0
-IMAGE_NAME ?= amaysim/serverless:$(SERVERLESS_VERSION)
-TAG = $(SERVERLESS_VERSION)
+IMAGE_NAME ?= amaysim/serverless:$(SERVERLESS_VERSION)-1
+TAG = $(SERVERLESS_VERSION)-1
 
 build:
 	docker build -t $(IMAGE_NAME) .
