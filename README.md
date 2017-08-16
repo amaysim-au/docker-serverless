@@ -25,21 +25,21 @@ $ make shell
 
 1. Change `SERVERLESS` of `Dockerfile`
 2. Change `SERVERLESS_VERSION` of `Makefile`
-3. Build and test locally
+3. Change version of docker-serverless in `example/apigw/docker-compose`
+3. Build and test locally (test also the apigw example)
 4. Commit and push the changes
-5. Tag the commit with the command `make gitTag`
+5. Tag the commit with the command `$ make tag`
 6. Go to [hub.docker.com](hub.docker.com)
 7. In `Build Details` tab, you should now see the new tag kicking off
 
 ### Fix for the current version
 
 1. Do the fixes you want to do
-2. Build and test locally
+2. Build and test locally (test also the apigw example)
 3. Commit and push the changes
-4. Run `make gitTag`
+4. Run `$ make tag`
 5. Go to [hub.docker.com](hub.docker.com)
 6. In `Build Details` tab, you should now see build the tag kicking off
-
 
 Docker image
 ------------
