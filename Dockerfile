@@ -15,7 +15,9 @@ RUN wget https://yarnpkg.com/latest.tar.gz && \
     tar zvxf latest.tar.gz && \
     rm latest.tar.gz
 ENV PATH "$PATH:/opt/yarn/dist/bin"
+RUN ln -sf /opt/yarn/dist/bin/yarn /usr/local/bin/yarn && \
+    ln -sf /opt/yarn/dist/bin/yarn /usr/local/bin/yarnpkg
 RUN yarn --version
-ENV SERVERLESS serverless@1.19.0
+ENV SERVERLESS serverless@1.20.0
 RUN yarn global add $SERVERLESS
 WORKDIR /opt/app
