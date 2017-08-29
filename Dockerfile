@@ -18,6 +18,6 @@ ENV PATH "$PATH:/opt/yarn/dist/bin"
 RUN ln -sf /opt/yarn/dist/bin/yarn /usr/local/bin/yarn && \
     ln -sf /opt/yarn/dist/bin/yarn /usr/local/bin/yarnpkg
 RUN yarn --version
-ENV SERVERLESS serverless@1.20.0
+ENV SERVERLESS serverless@1.20.1
 RUN yarn global add $SERVERLESS
 WORKDIR /opt/app
