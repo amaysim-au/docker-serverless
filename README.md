@@ -46,8 +46,8 @@ Docker image
 
 The Docker image has the following:
 
-- Node 6.10 (Alpine)
-- [Serverless Framework v1.4](https://serverless.com)
+- Node 8.4 (Alpine): we leverage Babel to be compatible with AWS Lambda runtime
+- [Serverless Framework v1.20](https://serverless.com)
 - [yarn](https://github.com/yarnpkg/yarn)
 - zip: handy to zip your own serverless artefact
 - [AWS CLI](https://github.com/aws/aws-cli): required by some Serverless plug-ins to work
