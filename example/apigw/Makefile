@@ -50,6 +50,7 @@ _deps:
 	yarn --no-bin-links
 	$(info Install babel-cli globally)
 	yarn global add babel-cli@6.18.0
+	zip -rq node_modules.zip node_modules/
 
 _testUnit:
 	./node_modules/mocha/bin/mocha --compilers js:babel-register test/unit
@@ -73,6 +74,8 @@ _buildLite:
 .PHONY: _buildLite
 
 _deploy:
+	mkdir -p node_modules
+	unzip -qo -d . node_modules.zip
 	rm -fr .serverless
 	sls deploy -v
 
