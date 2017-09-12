@@ -6,6 +6,9 @@ ifdef DOTENV
 else
 	DOTENV_TARGET=.env
 endif
+ifdef GO_PIPELINE_NAME
+	ENV_RM_REQUIRED?=rm_env
+endif
 
 ################
 # Entry Points #
@@ -14,7 +17,7 @@ endif
 build: $(DOTENV_TARGET)
 	docker-compose run --rm serverless make _deps _testUnit _build
 
-deploy: $(ARTIFACT_PATH) $(DOTENV_TARGET)
+deploy: $(ENV_RM_REQUIRED) $(ARTIFACT_PATH) $(DOTENV_TARGET)
 	docker-compose run --rm serverless make _deploy
 
 remove: $(DOTENV_TARGET)
@@ -36,6 +39,9 @@ shell: $(DOTENV_TARGET)
 dotenv:
 	@echo "Overwrite .env with $(DOTENV)"
 	cp $(DOTENV) .env
+
+rm_env:
+	rm -f .env
 
 # _deps installs nodejs modules and babel-cli.
 # This is time consuming and if you are developing using a container, best to not exit the container.
