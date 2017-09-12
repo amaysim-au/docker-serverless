@@ -9,6 +9,9 @@ endif
 ifdef GO_PIPELINE_NAME
 	ENV_RM_REQUIRED?=rm_env
 endif
+ifdef AWS_ROLE
+	ASSUME_REQUIRED?=assumeRole
+endif
 
 ################
 # Entry Points #
@@ -17,10 +20,10 @@ endif
 build: $(DOTENV_TARGET)
 	docker-compose run --rm serverless make _deps _testUnit _build
 
-deploy: $(ENV_RM_REQUIRED) $(ARTIFACT_PATH) $(DOTENV_TARGET)
+deploy: $(ENV_RM_REQUIRED) $(ARTIFACT_PATH) $(DOTENV_TARGET) $(ASSUME_REQUIRED)
 	docker-compose run --rm serverless make _deploy
 
-remove: $(DOTENV_TARGET)
+remove: $(DOTENV_TARGET) $(ASSUME_REQUIRED)
 	docker-compose run --rm serverless make _remove
 
 shell: $(DOTENV_TARGET)
