@@ -9,6 +9,9 @@ endif
 ifdef GO_PIPELINE_NAME
 	ENV_RM_REQUIRED?=rm_env
 endif
+ifdef AWS_ROLE
+	ASSUME_REQUIRED?=assumeRole
+endif
 
 ################
 # Entry Points #
@@ -17,10 +20,10 @@ endif
 build: $(DOTENV_TARGET)
 	docker-compose run --rm serverless make _deps _testUnit _build
 
-deploy: $(ENV_RM_REQUIRED) $(ARTIFACT_PATH) $(DOTENV_TARGET)
+deploy: $(ENV_RM_REQUIRED) $(ARTIFACT_PATH) $(DOTENV_TARGET) $(ASSUME_REQUIRED)
 	docker-compose run --rm serverless make _deploy
 
-remove: $(DOTENV_TARGET)
+remove: $(DOTENV_TARGET) $(ASSUME_REQUIRED)
 	docker-compose run --rm serverless make _remove
 
 shell: $(DOTENV_TARGET)
@@ -48,6 +51,7 @@ rm_env:
 _deps:
 	# work around due to https://github.com/yarnpkg/yarn/issues/1961
 	yarn --no-bin-links
+	zip -rq node_modules.zip node_modules/
 
 _testUnit:
 	./node_modules/mocha/bin/mocha --compilers js:babel-register test/unit
@@ -71,6 +75,8 @@ _buildLite:
 .PHONY: _buildLite
 
 _deploy:
+	mkdir -p node_modules
+	unzip -qo -d . node_modules.zip
 	rm -fr .serverless
 	sls deploy -v
 
@@ -79,4 +85,4 @@ _remove:
 	rm -fr .serverless
 
 _clean:
-	rm -fr node_modules .serverless package
+	rm -fr node_modules node_modules.zip .serverless package
