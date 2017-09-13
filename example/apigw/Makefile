@@ -84,4 +84,4 @@ _remove:
 	rm -fr .serverless
 
 _clean:
-	rm -fr node_modules .serverless package
+	rm -fr node_modules node_modules.zip .serverless package
