@@ -28,8 +28,8 @@ Greeting API using AWS Gateway and Lambda.
 ## Usage
 
 ```bash
-# create .env file based on .env.local
-$ make dotenv DOTENV=.env.local
+# create .env file based on .env.example
+$ make dotenv DOTENV=.env.example
 # test/build lambda package
 $ make build
 # deploy to aws
