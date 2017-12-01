@@ -29,7 +29,7 @@ $ make shell
 3. Build and test locally (test also the apigw example)
 4. Commit and push the changes
 5. Tag the commit with the command `$ make tag`
-6. Go to [hub.docker.com](hub.docker.com)
+6. Go to [hub.docker.com](https://hub.docker.com/r/amaysim/serverless/)
 7. In `Build Details` tab, you should now see the new tag kicking off
 
 ### Fix for the current version
@@ -38,7 +38,7 @@ $ make shell
 2. Build and test locally (test also the apigw example)
 3. Commit and push the changes
 4. Run `$ make tag`
-5. Go to [hub.docker.com](hub.docker.com)
+5. Go to [hub.docker.com](https://hub.docker.com/r/amaysim/serverless/)
 6. In `Build Details` tab, you should now see build the tag kicking off
 
 Docker image
