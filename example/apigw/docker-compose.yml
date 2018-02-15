@@ -1,7 +1,7 @@
 version: '2.1'
 services:
   serverless:
-    image: amaysim/serverless:1.25.0
+    image: amaysim/serverless:1.26.0
     env_file: .env
     volumes:
       - ~/.aws:/root/.aws
