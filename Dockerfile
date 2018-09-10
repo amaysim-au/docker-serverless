@@ -3,12 +3,6 @@ RUN apk --no-cache add python python3==3.6.5-r0 python3-dev==3.6.5-r0 py-pip ca-
     pip --no-cache-dir install awscli && \
     update-ca-certificates
 
-# Install glibc
-# RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/master/sgerrand.rsa.pub && \
-#     wget -q https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.25-r0/glibc-2.25-r0.apk && \
-#     apk add glibc-2.25-r0.apk && \
-#     rm -f glibc-2.25-r0.apk
-
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub && \
     wget -q https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.25-r0/glibc-2.25-r0.apk && \
     apk add glibc-2.25-r0.apk && \
