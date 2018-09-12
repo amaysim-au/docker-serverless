@@ -9,7 +9,7 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
     rm -f glibc-2.25-r0.apk    
 
 RUN mkdir -p /tmp/yarn && \
-    mkdir /opt/yarn/dist && \
+    mkdir -p /opt/yarn/dist && \
     cd /tmp/yarn && \
     wget -q https://yarnpkg.com/latest.tar.gz && \
     tar zvxf latest.tar.gz && \
