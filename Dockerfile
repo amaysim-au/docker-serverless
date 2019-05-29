@@ -17,4 +17,4 @@ RUN ln -sf /opt/yarn/dist/bin/yarn /usr/local/bin/yarn && \
   
 ENV SERVERLESS serverless@1.44.1
 RUN yarn global add $SERVERLESS
-WORKDIR /opt/app
+WORKDIR /work
