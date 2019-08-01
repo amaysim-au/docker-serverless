@@ -33,10 +33,10 @@ shell: $(DOTENV_TARGET)
 # Others #
 ##########
 
-# Create .env based on .env.template if .env does not exist
+# Create .env based on env.template if .env does not exist
 .env:
-	@echo "Create .env with .env.template"
-	cp .env.template .env
+	@echo "Create .env with env.template"
+	cp env.template .env
 
 # Create/Overwrite .env with $(DOTENV)
 dotenv:
