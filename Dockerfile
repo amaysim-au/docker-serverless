@@ -15,6 +15,6 @@ RUN ln -sf /opt/yarn/dist/bin/yarn /usr/local/bin/yarn && \
     ln -sf /opt/yarn/dist/bin/yarn /usr/local/bin/yarnpkg && \
     yarn --version
   
-ENV SERVERLESS serverless@1.52.2
+ENV SERVERLESS serverless@1.59.3
 RUN yarn global add $SERVERLESS
 WORKDIR /work
