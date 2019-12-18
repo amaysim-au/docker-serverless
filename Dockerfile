@@ -1,5 +1,5 @@
 FROM node:lts-alpine
-RUN apk --no-cache add python python3==3.6.8-r2 python3-dev==3.6.8-r2 py-pip ca-certificates groff less bash make jq curl wget g++ zip git openssh && \
+RUN apk --no-cache add python python3==3.7.5-r1 python3-dev==3.7.5-r1 py-pip ca-certificates groff less bash make jq curl wget g++ zip git openssh && \
   pip --no-cache-dir install awscli && \
   update-ca-certificates
 
@@ -19,6 +19,6 @@ RUN mkdir -p /tmp/yarn && \
 RUN ln -sf /opt/yarn/dist/bin/yarn /usr/local/bin/yarn && \
   ln -sf /opt/yarn/dist/bin/yarn /usr/local/bin/yarnpkg && \
   yarn --version
-ENV SERVERLESS serverless@1.53.0
+ENV SERVERLESS serverless@1.60.0
 RUN yarn global add $SERVERLESS
 WORKDIR /opt/app

@@ -46,7 +46,7 @@ dotenv:
 rm_env:
 	rm -f .env
 
-# _deps installs nodejs modules and babel-cli.
+# _deps installs NodeJS modules and Babel CLI.
 # This is time consuming and if you are developing using a container, best to not exit the container.
 _deps:
 	# work around due to https://github.com/yarnpkg/yarn/issues/1961
@@ -54,7 +54,7 @@ _deps:
 	zip -rq node_modules.zip node_modules/
 
 _testUnit:
-	./node_modules/mocha/bin/mocha --compilers js:babel-register test/unit
+	./node_modules/mocha/bin/mocha --require @babel/register --recursive test/unit
 
 # _build transcompiles the src folder using Babel, installs nodejs production modules, and creates a package ready for Serverless Framework.
 _build:
@@ -62,7 +62,7 @@ _build:
 	mkdir -p $(PACKAGE_DIR)/
 	cp package.json $(PACKAGE_DIR)/
 	cp yarn.lock $(PACKAGE_DIR)/
-	./node_modules/babel-cli/bin/babel.js src -d $(PACKAGE_DIR)/src
+	./node_modules/@babel/cli/bin/babel.js src -d $(PACKAGE_DIR)/src
 	cd $(PACKAGE_DIR) && yarn install --production --no-bin-links
 	cd $(PACKAGE_DIR) && zip -rq ../package .
 
@@ -70,7 +70,7 @@ _build:
 # This speeds up the process if you you have already done _build before and the node_modules production hasn't changed.
 _buildLite:
 	rm -fr $(PACKAGE_DIR)/src
-	./node_modules/babel-cli/bin/babel.js src -d $(PACKAGE_DIR)/src
+	./node_modules/@babel/cli/bin/babel.js src -d $(PACKAGE_DIR)/src
 	cd $(PACKAGE_DIR) && zip -rq ../package .
 .PHONY: _buildLite
 
