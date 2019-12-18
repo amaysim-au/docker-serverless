@@ -25,31 +25,33 @@ $ make shell
 
 ## Update Docker image
 
+To update the Docker image after making changes/fixes follow the common steps below. The steps for updating the Serverless Framework and Node can be combined.
+
 ### New version of Serverless Framework
 
 1. Change `SERVERLESS` of `Dockerfile`
 2. Change `SERVERLESS_VERSION` of `Makefile`
 3. Change version of docker-serverless in `example/apigw/docker-compose`
-4. Build and test locally (test also the apigw example)
-5. Commit and push the changes
-6. Tag the commit with the command `$ make tag`
-7. Go to [hub.docker.com](https://hub.docker.com/r/amaysim/serverless/)
-8. In `Build Details` tab, you should now see the new tag kicking off
+4. Follow common steps
 
-### Fix for the current version
+### New version of Node
 
-1. Do the fixes you want to do
-2. Build and test locally (test also the apigw example)
-3. Commit and push the changes
-4. Run `$ make tag`
-5. Go to [hub.docker.com](https://hub.docker.com/r/amaysim/serverless/)
-6. In `Build Details` tab, you should now see build the tag kicking off
+1. Run `docker pull node:lts-alpine`
+2. Follow common steps
+
+### Common steps
+
+1. Build and test locally (test also the apigw example)
+2. Commit and push the changes
+3. Tag the commit with the command `$ make tag`
+4. Go to [hub.docker.com](https://hub.docker.com/r/amaysim/serverless/)
+5. In `Build Details` tab, you should now see the new tag kicking off
 
 ## Docker image
 
 The Docker image has the following:
 
-- Node LTS (10.16.3) Alpine: we leverage Babel to be compatible with AWS Lambda runtime
+- Node LTS (12.14.0) Alpine: we leverage Babel to be compatible with AWS Lambda runtime
 - [Serverless Framework](https://serverless.com/framework/)
 - [yarn](https://github.com/yarnpkg/yarn)
 - zip: handy to zip your own serverless artifact
