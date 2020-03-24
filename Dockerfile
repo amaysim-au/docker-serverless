@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node:13-alpine
 RUN apk --no-cache add python python3 python3-dev py-pip ca-certificates groff less bash make jq curl wget g++ zip git openssh && \
     pip --no-cache-dir install awscli && \
     update-ca-certificates
@@ -15,6 +15,6 @@ RUN ln -sf /opt/yarn/dist/bin/yarn /usr/local/bin/yarn && \
     ln -sf /opt/yarn/dist/bin/yarn /usr/local/bin/yarnpkg && \
     yarn --version
   
-ENV SERVERLESS serverless@1.61.2
+ENV SERVERLESS serverless@1.67.0
 RUN yarn global add $SERVERLESS
 WORKDIR /work
