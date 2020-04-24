@@ -3,7 +3,7 @@ IMAGE_NAME ?= amaysim/serverless:$(SERVERLESS_VERSION)
 TAG = $(SERVERLESS_VERSION)
 
 build:
-	docker build -t $(IMAGE_NAME) .
+	docker build --build-arg SERVERLESS_VERSION:$(SERVERLESS_VERSION) --tag $(IMAGE_NAME) .
 
 pull:
 	docker pull $(IMAGE_NAME)
