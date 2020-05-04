@@ -1,6 +1,6 @@
 FROM node:13-alpine
 RUN apk --no-cache add python python3 python3-dev py-pip ca-certificates groff less bash make jq curl wget g++ zip git openssh postgresql-dev && \
-    pip --no-cache-dir install awscli && \
+    pip --no-cache-dir install awscli virtualenv && \
     update-ca-certificates
 
 RUN mkdir -p /tmp/yarn && \
