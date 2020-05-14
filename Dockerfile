@@ -19,6 +19,6 @@ RUN mkdir -p /tmp/yarn && \
 RUN ln -sf /opt/yarn/dist/bin/yarn /usr/local/bin/yarn && \
   ln -sf /opt/yarn/dist/bin/yarn /usr/local/bin/yarnpkg && \
   yarn --version
-ENV SERVERLESS serverless@1.68.0
+ENV SERVERLESS serverless@1.70.1
 RUN yarn global add $SERVERLESS
 WORKDIR /opt/app
