@@ -29,10 +29,9 @@ To update the Docker image after making changes/fixes follow the common steps be
 
 ### New version of Serverless Framework
 
-1. Change `SERVERLESS` of `Dockerfile`
-2. Change `SERVERLESS_VERSION` of `Makefile`
-3. Change version of docker-serverless in `example/apigw/docker-compose`
-4. Follow common steps
+1. Change `SERVERLESS_VERSION` of `Makefile`
+2. Change version of docker-serverless in `example/apigw/docker-compose`
+3. Follow common steps
 
 ### New version of Node
 
