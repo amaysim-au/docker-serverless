@@ -12,7 +12,7 @@ build: env-SERVERLESS_VERSION
 
 push: env-DOCKER_USERNAME env-DOCKER_PASSWORD
 	@echo "$(DOCKER_PASSWORD)" | docker login --username "$(DOCKER_USERNAME)" --password-stdin docker.io
-	docker push
+	docker push $(IMAGE)
 	docker logout
 
 pull:
