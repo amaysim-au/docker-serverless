@@ -25,6 +25,6 @@ clean:
 	docker rmi -f $(IMAGE)
 
 env-%:
-	$(info check if $* is not empty)
+	$(info Check if $* is not empty)
 	@docker run --rm -e ENV_VAR=$($*) node:alpine sh -c '[ -z "$$ENV_VAR" ] && echo "$* is empty" && exit 1 || exit 0'
 
