@@ -4,6 +4,8 @@ IMAGE = $(IMAGE_NAME):$(SERVERLESS_VERSION)
 
 ciTest: build clean
 
+ciPush: build push clean
+
 build: env-SERVERLESS_VERSION
 	docker build --build-arg SERVERLESS_VERSION=$(SERVERLESS_VERSION) -t $(IMAGE) .
 	docker run --rm $(IMAGE) bash -c 'serverless --version | grep $(SERVERLESS_VERSION)'
@@ -24,5 +26,5 @@ clean:
 
 env-%:
 	$(info check if $* is not empty)
-	@docker run --rm -e ENV_VAR=$($*) node:alpine sh -c '[ -z "$$ENV_VAR" ] && echo $* is empty && exit 1 || exit 0'
+	@docker run --rm -e ENV_VAR=$($*) node:alpine sh -c '[ -z "$$ENV_VAR" ] && echo "$* is empty" && exit 1 || exit 0'
 

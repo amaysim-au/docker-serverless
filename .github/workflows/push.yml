@@ -1,0 +1,19 @@
+name: Push
+on:
+  push:
+    branches:
+      - master
+  # schedule:
+    # - cron: '0 6 1 * *'
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Push
+      run: make ciPush
+      env:
+        IMAGE_NAME: flemay/serverless
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
