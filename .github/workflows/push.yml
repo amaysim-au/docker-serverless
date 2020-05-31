@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Set IMAGE_NAME
+    - name: Set IMAGE_NAME if set in secrets
       if: ${{ env.IMAGE_NAME }}
       run: echo '::set-env name=IMAGE_NAME::${{ secrets.IMAGE_NAME }}'
     - name: Push
