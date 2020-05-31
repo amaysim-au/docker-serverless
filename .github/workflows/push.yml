@@ -12,10 +12,12 @@ on:
 jobs:
   push:
     runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME_IN_SECRETS: ${{ secrets.IMAGE_NAME}}
     steps:
     - uses: actions/checkout@v1
-    - name: Set IMAGE_NAME if set in secrets
-      if: ${{ env.IMAGE_NAME }}
+    - name: Set IMAGE_NAME if defined in secrets
+      if: ${{ env.IMAGE_NAME_IN_SECRETS }}
       run: echo '::set-env name=IMAGE_NAME::${{ secrets.IMAGE_NAME }}'
     - name: Push
       run: make ciPush
