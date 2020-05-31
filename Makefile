@@ -26,5 +26,5 @@ clean:
 
 env-%:
 	$(info Check if $* is not empty)
-	@docker run --rm -e ENV_VAR=$($*) node:alpine sh -c '[ -z "$$ENV_VAR" ] && echo "$* is empty" && exit 1 || exit 0'
+	@docker run --rm -e ENV_VAR=$($*) node:alpine sh -c '[ -z "$$ENV_VAR" ] && echo "Error: $* is empty" && exit 1 || exit 0'
 
