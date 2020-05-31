@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Set IMAGE_NAME
-      if: ${{ secrets.IMAGE_NAME != null }}
+      if: ${{ env.IMAGE_NAME }}
       run: echo '::set-env name=IMAGE_NAME::${{ secrets.IMAGE_NAME }}'
     - name: Push
       run: make ciPush
