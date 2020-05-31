@@ -1,6 +1,7 @@
 SERVERLESS_VERSION ?= $(shell docker run --rm node:alpine npm show serverless version)
 IMAGE_NAME ?= amaysim/serverless
 IMAGE = $(IMAGE_NAME):$(SERVERLESS_VERSION)
+ROOT_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 
 ciTest: build clean
 
@@ -19,7 +20,7 @@ pull:
 	docker pull $(IMAGE)
 
 shell:
-	docker run --rm -it -v $(PWD):/opt/app $(IMAGE) bash
+	docker run --rm -it -v $(ROOT_DIR):/opt/app $(IMAGE) bash
 
 clean:
 	docker rmi -f $(IMAGE)
