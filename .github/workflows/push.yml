@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'Makefile'
+      - 'Dockerfile'
   # schedule:
     # - cron: '0 6 1 * *'
 jobs:
