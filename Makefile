@@ -1,5 +1,5 @@
 SERVERLESS_VERSION ?= $(shell docker run --rm node:alpine npm show serverless version)
-IMAGE_NAME ?= flemay/serverless
+IMAGE_NAME ?= amaysim/serverless
 IMAGE = $(IMAGE_NAME):$(SERVERLESS_VERSION)
 ROOT_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 

@@ -8,7 +8,7 @@ on:
       - 'Dockerfile'
       - '.github/workflows/push.yml'
   schedule:
-    # Every Monday at 6 AM
+    # Every Monday at 6 AM (EDT)
     - cron: '0 6 * * 1'
 jobs:
   push:
