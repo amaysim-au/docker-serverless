@@ -3,9 +3,10 @@ on:
   push:
     branches:
       - master
-#     paths:
-      # - 'Makefile'
-#       - 'Dockerfile'
+    paths:
+      - 'Makefile'
+      - 'Dockerfile'
+      - '.github/workflows/push.yml'
   schedule:
     # Every Monday at 6 AM
     - cron: '0 6 * * 1'
@@ -13,11 +14,11 @@ jobs:
   push:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME_IN_SECRETS: ${{ secrets.IMAGE_NAME}}
+      SECRETS_IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
     steps:
     - uses: actions/checkout@v1
     - name: Set IMAGE_NAME if defined in secrets
-      if: ${{ env.IMAGE_NAME_IN_SECRETS }}
+      if: ${{ env.SECRETS_IMAGE_NAME }}
       run: echo '::set-env name=IMAGE_NAME::${{ secrets.IMAGE_NAME }}'
     - name: Push
       run: make ciPush
