@@ -15,12 +15,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Set IMAGE_NAME
-      if: ${{ secrets.IMAGE_NAME }}
+      if: ${{ secrets.IMAGE_NAME != null }}
       run: echo '::set-env name=IMAGE_NAME::${{ secrets.IMAGE_NAME }}'
     - name: Push
       run: make ciPush
       env:
-        IMAGE_NAME: flemay/serverless
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
