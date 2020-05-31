@@ -3,16 +3,20 @@ on:
   push:
     branches:
       - master
-    paths:
-      - 'Makefile'
-      - 'Dockerfile'
-  # schedule:
-    # - cron: '0 6 1 * *'
+#     paths:
+      # - 'Makefile'
+#       - 'Dockerfile'
+  schedule:
+    # Every Monday at 6 AM
+    - cron: '0 6 * * 1'
 jobs:
   push:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
+    - name: Set IMAGE_NAME
+      if: ${{ secrets.IMAGE_NAME }}
+      run: echo '::set-env name=IMAGE_NAME::${{ secrets.IMAGE_NAME }}'
     - name: Push
       run: make ciPush
       env:

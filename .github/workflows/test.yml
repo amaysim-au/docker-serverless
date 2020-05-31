@@ -7,5 +7,4 @@ jobs:
     - uses: actions/checkout@v1
     - name: Test
       run: make ciTest
-      env:
-        IMAGE_NAME: flemay/serverless
+
