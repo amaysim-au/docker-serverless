@@ -11,8 +11,8 @@ build: env-SERVERLESS_VERSION
 	docker build --build-arg SERVERLESS_VERSION=$(SERVERLESS_VERSION) -t $(IMAGE) .
 	docker run --rm $(IMAGE) bash -c 'serverless --version | grep $(SERVERLESS_VERSION)'
 
-push: env-DOCKER_USERNAME env-DOCKER_PASSWORD
-	@echo "$(DOCKER_PASSWORD)" | docker login --username "$(DOCKER_USERNAME)" --password-stdin docker.io
+push: env-DOCKER_USERNAME env-DOCKER_ACCESS_TOKEN
+	@echo "$(DOCKER_ACCESS_TOKEN)" | docker login --username "$(DOCKER_USERNAME)" --password-stdin docker.io
 	docker push $(IMAGE)
 	docker logout
 
