@@ -1,0 +1,23 @@
+name: Push
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'Makefile'
+      - 'Dockerfile'
+      - '.github/workflows/push.yml'
+  schedule:
+    # Every Monday at 6 AM (EDT)
+    - cron: '0 6 * * 1'
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Push
+      run: make ciPush
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+
