@@ -6,7 +6,7 @@ on:
     paths:
       - 'Makefile'
       - 'Dockerfile'
-      - '.github/workflows/push.yml'
+      - '.github/workflows/deploy.yml'
   schedule:
     # Every Monday at 6 AM (EDT)
     - cron: '0 6 * * 1'
