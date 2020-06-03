@@ -2,9 +2,10 @@
 
 [![Serverless Application Framework AWS Lambda API Gateway](./assets/serverless-framework.png)](http://serverless.com)
 
-[![build](https://github.com/amaysim-au/docker-serverless/workflows/Push/badge.svg)](https://github.com/amaysim-au/docker-serverless/actions)
-[![latest-version](https://img.shields.io/docker/v/amaysim/serverless)](https://hub.docker.com/r/amaysim/serverless)
-[![docker-pulls](https://img.shields.io/docker/pulls/amaysim/serverless)](https://hub.docker.com/r/amaysim/serverless)
+[![deploy status](https://github.com/amaysim-au/docker-serverless/workflows/Deploy/badge.svg)](https://github.com/amaysim-au/docker-serverless/actions)
+[![latest version](https://img.shields.io/docker/v/amaysim/serverless)](https://hub.docker.com/r/amaysim/serverless)
+[![docker pulls](https://img.shields.io/docker/pulls/amaysim/serverless)](https://hub.docker.com/r/amaysim/serverless)
+[![docker image size](https://img.shields.io/docker/image-size/amaysim/serverless)](https://hub.docker.com/r/amaysim/serverless)
 [![License](https://img.shields.io/dub/l/vibe-d.svg)](LICENSE)
 
 Docker image containing NodeJS, Serverless Framework and Yarn.
