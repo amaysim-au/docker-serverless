@@ -2,8 +2,9 @@
 
 [![Serverless Application Framework AWS Lambda API Gateway](./assets/serverless-framework.png)](http://serverless.com)
 
+[![npm](https://img.shields.io/npm/v/serverless)](https://www.npmjs.com/package/serverless)
 [![deploy status](https://github.com/amaysim-au/docker-serverless/workflows/Deploy/badge.svg)](https://github.com/amaysim-au/docker-serverless/actions)
-[![latest version](https://img.shields.io/docker/v/amaysim/serverless)](https://hub.docker.com/r/amaysim/serverless)
+[![image version](https://img.shields.io/docker/v/amaysim/serverless?label=image%20version)](https://hub.docker.com/r/amaysim/serverless)
 [![docker pulls](https://img.shields.io/docker/pulls/amaysim/serverless)](https://hub.docker.com/r/amaysim/serverless)
 [![docker image size](https://img.shields.io/docker/image-size/amaysim/serverless)](https://hub.docker.com/r/amaysim/serverless)
 [![License](https://img.shields.io/dub/l/vibe-d.svg)](LICENSE)
