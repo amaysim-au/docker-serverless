@@ -13,13 +13,24 @@ Docker image containing NodeJS, Serverless Framework and Yarn.
 
 ## Usage
 
-### Build Locally
+### Docker run command
+
+```bash
+# running Serverless version 1.72.0
+$ docker run --rm amaysim/serverless:1.72.0 serverless --help
+```
+
+### Build image locally
 
 If you want to build and use your own local image
 
 ```bash
-# build image locally
+# build image locally with latest Serverless version
 $ make build
+
+# build image locally with specific Serverless version
+$ make build SERVERLESS_VERSION=1.72.0
+
 # go inside the container
 $ make shell
 ```
@@ -28,28 +39,23 @@ $ make shell
 
 `example/apigw` is an example on how to use `amaysim/serverless`.
 
-## Update Docker image
+## Docker image update automation
 
-To update the Docker image after making changes/fixes follow the common steps below. The steps for updating the Serverless Framework and Node can be combined.
+Periodically, once a week, a new amaysim/serverless Docker image containing the lastest version of Serverless is being built with [GitHub Actions](https://github.com/amaysim-au/docker-serverless/actions). This means that there is no need for someone to manually update and tag the image whenever there is a new Serverless version.
 
-### New version of Serverless Framework
+## Contributing
 
-1. Change `SERVERLESS_VERSION` of `Makefile`
-2. Change version of docker-serverless in `example/apigw/docker-compose`
-3. Follow common steps
+The project follows the typical [GitHub pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) model. Before starting any work, please either comment on an existing issue, or file a new one.
 
-### New version of Node
-
-1. Run `docker pull node:lts-alpine`
-2. Follow common steps
-
-### Common steps
-
-1. Build and test locally (test also the apigw example)
-2. Commit and push the changes
-3. Tag the commit with the command `$ make tag`
-4. Go to [hub.docker.com](https://hub.docker.com/r/amaysim/serverless/)
-5. In `Build Details` tab, you should now see the new tag kicking off
+1. [Fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) this repository
+1. Clone the forked repository
+1. Create a new branch with a meaningful name (optional)
+1. Make your changes
+1. Test locally
+    1. `$ make ciTest`
+    1. Test also the apigw example
+1. Commit and push your changes
+1. Create a [pull request from a fork](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork)
 
 ## Docker image
 
