@@ -16,7 +16,7 @@ Docker image containing NodeJS, Serverless Framework and Yarn.
 ### Docker run command
 
 ```bash
-# running serverless version 1.72.0
+# running Serverless version 1.72.0
 $ docker run --rm amaysim/serverless:1.72.0 serverless --help
 ```
 
@@ -28,7 +28,7 @@ If you want to build and use your own local image
 # build image locally with latest Serverless version
 $ make build
 
-# build image locally with specific Serveress version
+# build image locally with specific Serverless version
 $ make build SERVERLESS_VERSION=1.72.0
 
 # go inside the container
