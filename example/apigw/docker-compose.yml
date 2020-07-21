@@ -1,10 +1,9 @@
 ---
-version: "2.1"
+version: "3.8"
 services:
   serverless:
     image: amaysim/serverless:1.71.1
-    env_file: .env
+    env_file: ${ENVFILE:-.env}
     volumes:
     - ~/.aws:/root/.aws
-    - ~/.ssh:/root/.ssh
     - .:/opt/app
