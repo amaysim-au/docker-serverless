@@ -5,7 +5,7 @@ FROM node:lts-alpine
 ARG SERVERLESS_VERSION=latest
 ENV SERVERLESS_VERSION $SERVERLESS_VERSION
 
-RUN apk --no-cache add python python3==3.8.2-r0 python3-dev==3.8.2-r0 py-pip ca-certificates groff less bash make jq curl wget g++ zip git openssh && \
+RUN apk --no-cache add python python3 python3-dev py-pip ca-certificates groff less bash make jq curl wget g++ zip git openssh && \
     pip --no-cache-dir install awscli && \
     update-ca-certificates
 
