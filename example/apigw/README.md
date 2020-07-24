@@ -11,30 +11,27 @@ Greeting API using AWS Gateway and Lambda.
 
 ## Installation
 
-### With Serverless
-
-    $ serverless install -u https://github.com/amaysim-au/docker-serverless/tree/master/example/apigw -n your-project
-
-### With Docker
-
-    $ docker run --rm -v ${PWD}:/opt/app amaysim/serverless:1.45.1 serverless install -u https://github.com/amaysim-au/docker-serverless/tree/master/example/apigw -n your-project
-
-### With git
-
-    $ git clone https://github.com/amaysim-au/docker-serverless.git
-    $ cp -r docker-serverless/example/apigw/ your-project
-    $ rm -fr docker-serverless/example/apigw/
+```bash
+$ git clone https://github.com/amaysim-au/docker-serverless.git
+$ cd docker-serverless/example/apigw/
+```
 
 ## Usage
 
 ```bash
-# create .env file based on .env.example
-$ make dotenv DOTENV=.env.example
-# test/build lambda package
+# Create .env file based on .env.example
+$ make envfile DOTENV=.env.example
+# Install dependencies
+$ make deps
+
+# Test
+$ make test
+# Build
 $ make build
-# deploy to aws
+
+# Deploy to AWS
 $ make deploy
-# you should see something like:
+# You should see something like:
 #   endpoints:
 #     GET - https://xyz.execute-api.ap-southeast-2.amazonaws.com/dev/greet
 $ curl https://xyz.execute-api.ap-southeast-2.amazonaws.com/dev/greet
@@ -44,8 +41,8 @@ $ curl https://xyz.execute-api.ap-southeast-2.amazonaws.com/dev/greet
 #   </body>
 # </html>
 
-# remove the api gateway
+# Remove the api gateway
 $ make remove
-# clean your folder
-$ make _clean
+# Clean your folder
+$ make clean
 ```
