@@ -19,8 +19,8 @@ $ cd docker-serverless/example/apigw/
 ## Usage
 
 ```bash
-# Create .env file based on .env.example
-$ make envfile DOTENV=.env.example
+# Create .env file based on env.example
+$ make envfile ENVFILE=env.example
 # Install dependencies
 $ make deps
 
