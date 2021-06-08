@@ -14,7 +14,9 @@ jobs:
     - uses: actions/checkout@master
 
     - name: hadolint
-      uses: burdzwastaken/hadolint-action@master
+      uses: hadolint/hadolint-action@v1.5.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         HADOLINT_ACTION_DOCKERFILE_FOLDER: .
+      with:
+        ignore: 'DL3018 DL3013'
