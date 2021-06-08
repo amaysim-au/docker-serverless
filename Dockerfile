@@ -1,11 +1,10 @@
-FROM node:13-alpine
+FROM node:14-alpine
 
 ENV SERVERLESS serverless@2.44.0
 
 RUN apk --no-cache update && \
     apk --no-cache add \
         docker \
-        python \
         python3 \
         python3-dev \
         py-pip \
