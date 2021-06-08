@@ -1,2 +1,5 @@
+.idea
+.github/automation/venv
+.github/automation/Dockerfile
 env.list
 .idea

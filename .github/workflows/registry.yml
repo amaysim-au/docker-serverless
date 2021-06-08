@@ -25,7 +25,7 @@ jobs:
       - name: Build, tag, and push image to Amazon public ECR
         env:
           ECR_REGISTRY: public.ecr.aws
-          ECR_REPOSITORY: v9i6s3d6/serverless
+          ECR_REPOSITORY: dnxsolutions/serverless
           IMAGE_TAG: ${{ steps.get_tag.outputs.tag }}
         run: |
           apk add docker
