@@ -1,4 +1,4 @@
-name: Publish Docker image
+name: Build and Push Docker image
 
 on:
   push:
@@ -6,9 +6,29 @@ on:
       - '*'
 
 jobs:
-  push_to_ecr:
-    name: Push Docker image to ECR
+  build:
+    name: Build
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Build and export
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          tags: dnxsolutions/serverless:latest
+          outputs: type=docker,dest=/tmp/serverless.tar
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: serverless
+          path: /tmp/serverless.tar
+  ecr:
+    name: Push to ECR
+    runs-on: ubuntu-latest
+    needs: build
     container: dnxsolutions/aws:2.1.6-dnx1
     steps:
       - name: Check out the repo
@@ -22,7 +42,12 @@ jobs:
       - name: Get the tag
         id: get_tag
         run: echo ::set-output name=tag::${GITHUB_REF#refs/tags/}
-      - name: Build, tag, and push image to Amazon public ECR
+      - name: Download docker artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: serverless
+          path: /tmp
+      - name: Load, tag, and push image
         env:
           ECR_REGISTRY: public.ecr.aws
           ECR_REPOSITORY: dnxsolutions/serverless
@@ -30,7 +55,74 @@ jobs:
         run: |
           apk add docker
           aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          docker load --input /tmp/serverless.tar
+          docker image ls -a
+          docker tag $ECR_REPOSITORY:latest $ECR_REGISTRY/$ECR_REPOSITORY:latest
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          docker tag $ECR_REPOSITORY:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+  docker-hub:
+    name: Push to Docker Hub
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DNX_DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DNX_DOCKERHUB_TOKEN }}
+      - name: Get the tag
+        id: get_tag
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/tags/}
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: serverless
+          path: /tmp
+      - name: Load, tag, and push image
+        env:
+          DOCKERHUB_REPOSITORY: dnxsolutions/serverless
+          IMAGE_TAG: ${{ steps.get_tag.outputs.tag }}
+        run: |
+          docker load --input /tmp/serverless.tar
+          docker image ls -a
+          docker push $DOCKERHUB_REPOSITORY:latest
+          docker tag $DOCKERHUB_REPOSITORY:latest $DOCKERHUB_REPOSITORY:$IMAGE_TAG
+          docker push $DOCKERHUB_REPOSITORY:$IMAGE_TAG
+
+  ghcr:
+    name: Push to GitHub Registry
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get the tag
+        id: get_tag
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/tags/}
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: serverless
+          path: /tmp
+      - name: Load, tag, and push image
+        env:
+          BASE_REPOSITORY: dnxsolutions/serverless
+          GHCR_REPOSITORY: ghcr.io/dnxlabs/serverless
+          IMAGE_TAG: ${{ steps.get_tag.outputs.tag }}
+        run: |
+          docker load --input /tmp/serverless.tar
+          docker image ls -a
+          docker tag $BASE_REPOSITORY:latest $GHCR_REPOSITORY:latest
+          docker push $GHCR_REPOSITORY:latest
+          docker tag $GHCR_REPOSITORY:latest $GHCR_REPOSITORY:$IMAGE_TAG
+          docker push $GHCR_REPOSITORY:$IMAGE_TAG
