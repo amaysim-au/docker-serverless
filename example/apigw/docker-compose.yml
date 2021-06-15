@@ -1,9 +1,0 @@
----
-version: "3.8"
-services:
-  serverless:
-    image: amaysim/serverless:1.71.1
-    env_file: ${ENVFILE:-.env}
-    volumes:
-    - ~/.aws:/root/.aws
-    - .:/opt/app
