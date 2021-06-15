@@ -35,10 +35,6 @@ $ make build SERVERLESS_VERSION=1.72.0
 $ make shell
 ```
 
-## Example
-
-`example/apigw` is an example on how to use `amaysim/serverless`.
-
 ## Docker image update automation
 
 Periodically, once a week, a new amaysim/serverless Docker image containing the lastest version of Serverless is being built with [GitHub Actions](https://github.com/amaysim-au/docker-serverless/actions). This means that there is no need for someone to manually update and tag the image whenever there is a new Serverless version.
@@ -53,7 +49,6 @@ The project follows the typical [GitHub pull request](https://help.github.com/en
 1. Make your changes
 1. Test locally
     1. `$ make ciTest`
-    1. Test also the apigw example
 1. Commit and push your changes
 1. Create a [pull request from a fork](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork)
 
