@@ -7,6 +7,8 @@ Docker image with:
 
 - python3
 - serverless
+- awscli
+- aws-sam-cli
 
 ## Author
 App managed by [DNX Solutions](https://github.com/DNXLabs).

@@ -22,7 +22,7 @@ RUN apk --no-cache update && \
         openssh \
         postgresql-dev \
         yarn && \
-    pip --no-cache-dir install awscli virtualenv && \
+    pip3 --no-cache-dir install --upgrade pip awscli aws-sam-cli virtualenv && \
     update-ca-certificates && \
     rm -rf /var/cache/apk/* && \
     yarn global add $SERVERLESS
