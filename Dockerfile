@@ -1,6 +1,6 @@
 FROM node:14-alpine
 
-ENV SERVERLESS serverless@2.48.0
+ENV SERVERLESS serverless@2.48.1
 
 RUN apk --no-cache update && \
     apk --no-cache add \
@@ -22,7 +22,7 @@ RUN apk --no-cache update && \
         openssh \
         postgresql-dev \
         yarn && \
-    pip3 --no-cache-dir install --upgrade pip awscli aws-sam-cli virtualenv && \
+    pip --no-cache-dir install awscli virtualenv && \
     update-ca-certificates && \
     rm -rf /var/cache/apk/* && \
     yarn global add $SERVERLESS
