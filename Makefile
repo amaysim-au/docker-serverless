@@ -4,7 +4,6 @@ IMAGE = $(IMAGE_NAME):$(SERVERLESS_VERSION)
 ROOT_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 
 ciTest: build clean
-
 ciDeploy: build push clean
 
 build: env-SERVERLESS_VERSION
