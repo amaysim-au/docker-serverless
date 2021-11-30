@@ -1,11 +1,13 @@
-FROM node:lts-alpine
+ARG NODE_ALPINE_IMAGE=node:lts-alpine
+
+FROM $NODE_ALPINE_IMAGE
 
 # SERVERLESS_VERSION is set explicitly in the Makefile used to build, otherwise
 # use latest version.
 ARG SERVERLESS_VERSION=latest
 ENV SERVERLESS_VERSION $SERVERLESS_VERSION
 
-RUN apk --no-cache add python python3 python3-dev py-pip ca-certificates groff less bash make jq curl wget g++ zip git openssh && \
+RUN apk --no-cache add python2 python3 python3-dev py-pip ca-certificates groff less bash make jq curl wget g++ zip git openssh && \
     pip --no-cache-dir install awscli && \
     update-ca-certificates
 
