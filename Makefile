@@ -4,7 +4,7 @@ IMAGE_NAME ?= amaysim/serverless
 IMAGE = $(IMAGE_NAME):$(SERVERLESS_VERSION)
 ROOT_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 
-ciTest: deps build clean
+ciTest: deps build buildMultiArch clean
 ciDeploy: deps build push clean
 
 deps:
@@ -17,6 +17,27 @@ build: env-SERVERLESS_VERSION
 		--build-arg SERVERLESS_VERSION=$(SERVERLESS_VERSION) \
 		-t $(IMAGE) .
 	docker run --rm $(IMAGE) bash -c 'serverless --version | grep $(SERVERLESS_VERSION)'
+
+# Builds targetting linux/amd64 and linux/arm64 using buildx
+# It will store the result in cache
+buildMultiArch: env-SERVERLESS_VERSION
+	docker buildx build \
+		--platform linux/amd64,linux/arm64 \
+		--build-arg NODE_ALPINE_IMAGE=$(NODE_ALPINE_IMAGE) \
+		--build-arg SERVERLESS_VERSION=$(SERVERLESS_VERSION) \
+		-t $(IMAGE) .
+
+# Builds targetting linux/amd64 and linux/arm64 using buildx
+# And it pushes the images using `--push` flag
+buildMultiArchAndPush: env-SERVERLESS_VERSION env-DOCKER_USERNAME env-DOCKER_ACCESS_TOKEN
+	@echo "$(DOCKER_ACCESS_TOKEN)" | docker login --username "$(DOCKER_USERNAME)" --password-stdin docker.io
+	docker buildx build \
+		--platform linux/amd64,linux/arm64 \
+		--build-arg NODE_ALPINE_IMAGE=$(NODE_ALPINE_IMAGE) \
+		--build-arg SERVERLESS_VERSION=$(SERVERLESS_VERSION) \
+		--push \
+		-t $(IMAGE) .
+	docker logout
 
 push: env-DOCKER_USERNAME env-DOCKER_ACCESS_TOKEN
 	@echo "$(DOCKER_ACCESS_TOKEN)" | docker login --username "$(DOCKER_USERNAME)" --password-stdin docker.io
