@@ -5,7 +5,7 @@ IMAGE = $(IMAGE_NAME):$(SERVERLESS_VERSION)
 ROOT_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 
 ciTest: deps build buildMultiArch clean
-ciDeploy: deps build push clean
+ciDeploy: deps buildMultiArchAndPush
 
 deps:
 	$(info Pull latest version of $(NODE_ALPINE_IMAGE))
