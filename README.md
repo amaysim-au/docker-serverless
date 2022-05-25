@@ -20,9 +20,15 @@ Docker image containing NodeJS, Serverless Framework and Yarn.
 $ docker run --rm amaysim/serverless:1.72.0 serverless --help
 ```
 
-### Build image locally
+## Development
 
-If you want to build and use your own local image
+### Prerequisites
+
+- Docker
+- Buildx
+- Make
+
+### Build image locally
 
 ```bash
 # build image locally with latest Serverless version
@@ -33,6 +39,14 @@ $ make build SERVERLESS_VERSION=1.72.0
 
 # go inside the container
 $ make shell
+
+# testing multi arch build with buildx
+# you may need to create a builder first
+$ docker buildx create --name mybuilder --use
+$ make buildMultiArch
+
+# run the test
+$ make ciTest
 ```
 
 ## Docker image update automation
@@ -47,8 +61,7 @@ The project follows the typical [GitHub pull request](https://help.github.com/en
 1. Clone the forked repository
 1. Create a new branch with a meaningful name (optional)
 1. Make your changes
-1. Test locally
-    1. `$ make ciTest`
+1. Test locally (see section "Development")
 1. Commit and push your changes
 1. Create a [pull request from a fork](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork)
 
@@ -61,3 +74,9 @@ The Docker image has the following:
 - [yarn](https://github.com/yarnpkg/yarn)
 - zip: handy to zip your own serverless artifact
 - [AWS CLI](https://github.com/aws/aws-cli): required by some Serverless plug-ins to work
+
+## References
+
+- https://docs.docker.com/desktop/multi-arch/
+- https://www.docker.com/blog/multi-arch-build-and-images-the-simple-way/
+- https://github.com/docker/setup-buildx-action
