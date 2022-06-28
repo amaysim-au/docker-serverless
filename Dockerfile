@@ -1,5 +1,4 @@
-ARG NODE_ALPINE_IMAGE=node:lts-alpine
-
+ARG NODE_ALPINE_IMAGE
 FROM $NODE_ALPINE_IMAGE
 
 # SERVERLESS_VERSION is set explicitly in the Makefile used to build, otherwise
