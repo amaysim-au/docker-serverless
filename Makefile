@@ -7,6 +7,7 @@ ROOT_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 ciTest: deps build buildMultiArch clean
 ciDeploy: deps buildMultiArchAndPush
 
+# Dependencies for the project such as Docker Node Alpine image
 deps:
 	$(info Pull latest version of $(NODE_ALPINE_IMAGE))
 	docker pull $(NODE_ALPINE_IMAGE)
