@@ -6,7 +6,7 @@ FROM $NODE_ALPINE_IMAGE
 ARG SERVERLESS_VERSION=latest
 ENV SERVERLESS_VERSION $SERVERLESS_VERSION
 
-RUN apk --no-cache add python3 python3-dev py-pip ca-certificates groff less bash make jq curl wget g++ zip git openssh && \
+RUN apk --no-cache add python3 python3-dev py-pip ca-certificates groff less bash make cmake jq curl wget g++ zip git openssh && \
     pip --no-cache-dir install awscli && \
     update-ca-certificates
 
@@ -24,8 +24,8 @@ RUN mkdir -p /tmp/yarn && \
     rm -rf /tmp/yarn
 
 RUN ln -sf /opt/yarn/dist/bin/yarn /usr/local/bin/yarn && \
-  ln -sf /opt/yarn/dist/bin/yarn /usr/local/bin/yarnpkg && \
-  yarn --version
+    ln -sf /opt/yarn/dist/bin/yarn /usr/local/bin/yarnpkg && \
+    yarn --version
 
 RUN yarn global add serverless@$SERVERLESS_VERSION
 
