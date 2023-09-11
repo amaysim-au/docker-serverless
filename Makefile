@@ -12,6 +12,8 @@ deps:
 	$(info Pull latest version of $(NODE_ALPINE_IMAGE))
 	docker pull $(NODE_ALPINE_IMAGE)
 
+# Builds a new image targetting the host architecture
+# See `buildMultiArch` and `buildMultiArchAndPush` for multi-arch
 build: env-SERVERLESS_VERSION
 	docker build --no-cache \
 		--build-arg NODE_ALPINE_IMAGE=$(NODE_ALPINE_IMAGE) \
