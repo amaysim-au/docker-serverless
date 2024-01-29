@@ -1,4 +1,4 @@
-NODE_ALPINE_IMAGE ?= node:lts-alpine3.17
+NODE_ALPINE_IMAGE ?= node:lts-alpine3.19
 SERVERLESS_VERSION ?= $(shell docker run --rm $(NODE_ALPINE_IMAGE) npm show serverless version)
 IMAGE_NAME ?= amaysim/serverless
 IMAGE = $(IMAGE_NAME):$(SERVERLESS_VERSION)
