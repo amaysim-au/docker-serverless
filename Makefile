@@ -1,11 +1,17 @@
-NODE_ALPINE_IMAGE ?= node:lts-alpine3.19
-SERVERLESS_VERSION ?= $(shell docker run --rm $(NODE_ALPINE_IMAGE) npm show serverless version)
+NODE_ALPINE_IMAGE ?= node:lts-alpine3.20
+SERVERLESS_VERSION = 3.39.0
+# SERVERLESS_VERSION ?= $(shell docker run --rm $(NODE_ALPINE_IMAGE) npm show serverless version)
 IMAGE_NAME ?= amaysim/serverless
 IMAGE = $(IMAGE_NAME):$(SERVERLESS_VERSION)
 ROOT_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 
-ciTest: deps build buildMultiArch clean
-ciDeploy: deps buildMultiArchAndPush
+ciTest: deps info build buildMultiArch clean
+ciDeploy: deps info buildMultiArchAndPush
+
+info:
+	$(info Node alpine image: $(NODE_ALPINE_IMAGE))
+	$(info Serverless version: $(SERVERLESS_VERSION))
+	$(info Image: $(IMAGE))
 
 # Dependencies for the project such as Docker Node Alpine image
 deps:
