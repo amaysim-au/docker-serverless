@@ -1,2 +1,4 @@
 env.list
 .idea
+*.env
+.serverless
