@@ -56,6 +56,7 @@ push: env-DOCKER_USERNAME env-DOCKER_ACCESS_TOKEN
 pull:
 	docker pull $(IMAGE)
 
+# Run the image in interactive mode
 shell:
 	docker run --rm -it -v $(ROOT_DIR):/opt/app $(IMAGE) bash
 

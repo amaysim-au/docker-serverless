@@ -1,3 +1,4 @@
+# Arguments
 ARG NODE_ALPINE_IMAGE
 FROM $NODE_ALPINE_IMAGE
 
@@ -34,14 +35,12 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
     apk add --force-overwrite glibc-2.34-r0.apk && \
     rm -f glibc-2.34-r0.apk
 
-# Enable Corepack and set Yarn to Berry version
+# Enable Corepack and set Yarn to Berry version and install Serverless
 RUN npm install -g corepack && \
     corepack enable && \
     yarn set version berry && \
-    yarn --version
+    yarn --version && \
+    npm install -g serverless@$SERVERLESS_VERSION && \
+    serverless --version
 
-# Use yarn dlx to run serverless without globally installing
-RUN yarn dlx serverless@$SERVERLESS_VERSION --version
-
-# Set working directory
 WORKDIR /opt/app
