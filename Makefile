@@ -1,8 +1,9 @@
 NODE_ALPINE_IMAGE ?= node:lts-alpine3.20
 SERVERLESS_VERSION = 3.39.0
+INTERNAL_VERSION = 1.0.0
 # SERVERLESS_VERSION ?= $(shell docker run --rm $(NODE_ALPINE_IMAGE) npm show serverless version)
 IMAGE_NAME ?= amaysim/serverless
-IMAGE = $(IMAGE_NAME):$(SERVERLESS_VERSION)
+IMAGE = $(IMAGE_NAME):$(SERVERLESS_VERSION)-$(INTERNAL_VERSION)
 ROOT_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 
 ciTest: deps info build buildMultiArch clean
