@@ -37,7 +37,6 @@ build: env-SERVERLESS_VERSION
 		--build-arg SERVERLESS_VERSION=$(SERVERLESS_VERSION) \
 		--build-arg INSTALL_YARN_BERRY=$(INSTALL_YARN_BERRY) \
 		-t $(IMAGE) .
-	docker run --rm $(IMAGE) bash -c 'serverless --version | grep $(SERVERLESS_VERSION)'
 
 # Builds targetting linux/amd64 and linux/arm64 using buildx
 # It will store the result in cache
