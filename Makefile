@@ -1,10 +1,19 @@
-NODE_ALPINE_IMAGE ?= node:lts-alpine3.20
-SERVERLESS_VERSION = 3.39.0
-INTERNAL_VERSION = 1.0.0
+NODE_ALPINE_IMAGE ?= node:22.16.0-alpine3.21
+SERVERLESS_VERSION = 4.14.4
+INTERNAL_VERSION = 2.0.0
+INSTALL_YARN_BERRY ?= true
+
+# Define a suffix based on INSTALL_YARN_BERRY
+ifeq ($(INSTALL_YARN_BERRY),true)
+    YARN_BERRY_SUFFIX :=
+else
+    YARN_BERRY_SUFFIX := -yarn-v1
+endif
+
 # SERVERLESS_VERSION ?= $(shell docker run --rm $(NODE_ALPINE_IMAGE) npm show serverless version)
 TIMESTAMP = $(shell date +%y%m%d%H%M)  # Timestamp in YYMMDDHHMM format
 IMAGE_NAME ?= amaysim/serverless
-IMAGE = $(IMAGE_NAME):$(SERVERLESS_VERSION)-$(INTERNAL_VERSION)-$(TIMESTAMP)
+IMAGE = $(IMAGE_NAME):$(SERVERLESS_VERSION)-$(INTERNAL_VERSION)$(YARN_BERRY_SUFFIX)-$(TIMESTAMP)
 ROOT_DIR = $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 
 ciTest: deps info build buildMultiArch clean
@@ -26,6 +35,7 @@ build: env-SERVERLESS_VERSION
 	docker build --no-cache \
 		--build-arg NODE_ALPINE_IMAGE=$(NODE_ALPINE_IMAGE) \
 		--build-arg SERVERLESS_VERSION=$(SERVERLESS_VERSION) \
+		--build-arg INSTALL_YARN_BERRY=$(INSTALL_YARN_BERRY) \
 		-t $(IMAGE) .
 	docker run --rm $(IMAGE) bash -c 'serverless --version | grep $(SERVERLESS_VERSION)'
 
@@ -36,6 +46,7 @@ buildMultiArch: env-SERVERLESS_VERSION
 		--platform linux/amd64,linux/arm64 \
 		--build-arg NODE_ALPINE_IMAGE=$(NODE_ALPINE_IMAGE) \
 		--build-arg SERVERLESS_VERSION=$(SERVERLESS_VERSION) \
+		--build-arg INSTALL_YARN_BERRY=$(INSTALL_YARN_BERRY) \
 		-t $(IMAGE) .
 
 # Builds targetting linux/amd64 and linux/arm64 using buildx
@@ -46,6 +57,7 @@ buildMultiArchAndPush: env-SERVERLESS_VERSION env-DOCKER_USERNAME env-DOCKER_ACC
 		--platform linux/amd64,linux/arm64 \
 		--build-arg NODE_ALPINE_IMAGE=$(NODE_ALPINE_IMAGE) \
 		--build-arg SERVERLESS_VERSION=$(SERVERLESS_VERSION) \
+		--build-arg INSTALL_YARN_BERRY=$(INSTALL_YARN_BERRY) \
 		--push \
 		-t $(IMAGE) .
 	docker logout
