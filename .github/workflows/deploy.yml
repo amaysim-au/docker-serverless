@@ -21,7 +21,7 @@ jobs:
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v2
-      - name: Build multi-arch and push yarn v1
+      - name: Build multi-arch and push yarn v1.22
         run: make ciDeploy
         env:
           INSTALL_YARN_BERRY: false
