@@ -9,7 +9,7 @@
 
 [![Serverless Application Framework AWS Lambda API Gateway](./assets/serverless-framework.png)](http://serverless.com)
 
-Docker image containing NodeJS, Serverless Framework and Yarn
+Docker image containing NodeJS, Serverless Framework and Yarn.
 
 ## Usage
 
@@ -69,7 +69,7 @@ The project follows the typical [GitHub pull request](https://help.github.com/en
 
 The Docker image has the following:
 
-- Node LTS (12.14.0) Alpine: we leverage Babel to be compatible with AWS Lambda runtime
+- Node LTS (22.16.0) Alpine: we leverage Babel to be compatible with AWS Lambda runtime
 - [Serverless Framework](https://serverless.com/framework/)
 - [yarn](https://github.com/yarnpkg/yarn)
 - zip: handy to zip your own serverless artifact
