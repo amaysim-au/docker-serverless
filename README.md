@@ -9,7 +9,7 @@
 
 [![Serverless Application Framework AWS Lambda API Gateway](./assets/serverless-framework.png)](http://serverless.com)
 
-Docker image containing NodeJS, Serverless Framework and Yarn.
+Docker image containing NodeJS, Serverless Framework and Yarn
 
 ## Usage
 
